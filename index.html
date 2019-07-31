@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <style>
+    html,body{
+      height:100%;
+    }
+    #app{
+      position:relative;
+    }
+    #abb{
+      position:absolute;
+      right:0;
+      top:20%;
+      width:150px;
+      height:150px;
+    }
+    #add{
+      position:absolute;
+      right:0;
+      top:50%;
+      width:200px;
+      height:250px;
+    }
+    #div1{
+      z-index: 99999;
+    }
+
+    #flyRightControl,#walkcontrol{
+      width: 160px;
+      height: 160px;
+      position: absolute; 
+      box-shadow: 0px 0px 110px rgba(180, 180, 180, 0) ;
+      right:0;
+      bottom:1%;
+      display:none;
+    }
+
+    #flyLeftControl{
+      width: 160px;
+      height: 160px;
+      position: absolute; 
+      box-shadow: 0px 0px 110px rgba(180, 180, 180, 0) ;
+      left:0;
+      bottom:1%;
+      display:none;
+    }
+
+
+  .quartercircle{box-sizing: border-box;
+      position:absolute;width: 80px;height: 80px;-webkit-border-radius: 200px 0 0 0;
+  }
+
+
+
+  .divLeft{
+      top: 25%;left: -10%; transform:rotate(-45deg);background-color: rgba(136,136,136,0.6) ;
+  }
+
+
+  .divTop{
+      top: -10%;left: 25%; transform:rotate(45deg);background-color: rgba(136,136,136,0.6) ;
+  }
+
+
+  .divRight{
+      top: 25%;left: 60%;transform:rotate(135deg);background-color: rgba(136,136,136,0.6) ;
+  }
+
+
+  .divBottom{
+      top: 60%;left: 25%;transform:rotate(-135deg);background-color: rgba(136,136,136,0.6) ;
+  }
+
+
+  .circle{
+    width:40%;height:40%;position: absolute;
+    top:0%;left:0%;
+    bottom:0;right: 0;
+    margin:auto;
+    border-radius: 100%;
+    background-color: rgb(90, 90, 90);
+    z-index:99999;
+  }
+
+
+
+
+
+  .quartercircle button{
+      position: absolute;width: 100%;height: 100%;
+      background: #888888;
+      z-index: 88888;
+      outline:none;
+  }
+
+
+
+
+
+
+
+
+
+
+    #control{
+      width:100px;
+      height:100px;
+      position:absolute;
+      right:0;
+      top:0;
+      display:none;
+      z-index: 9999;
+      
+    }
+    #navigationImg{
+      width:15px;
+      height:15px;
+      position:absolute;
+      z-index: 9999;
+      display:none;
+    }
+  
+    
+    .aqqtotal{
+      width:47px;
+      height:100%;
+    }
+
+    .imgd{
+      width:20px;
+      height: 20px;
+    }
+    
+   
+    </style>
+    <title>test</title>
+  </head>
+  <body >
+    <div style="width:100%;height:100%"   id="app">
+    <div  id="abb">
+    </div>
+    <div  id="add">
+      <div ><img :src='navigationImg' id='navigationImg' ></div>
+    </div>
+
+
+
+    <div id="control">
+      <button id="saveS" ><v-touch   type='button'  v-on:tap ='pointmanagersaveS'  >视点保存</v-touch></button>
+      <button id="closeS"><v-touch  type='button'  v-on:tap ='pointmanagercloseS'  >视点取消</v-touch></button>
+      <button id="backS" ><v-touch   type='button'  v-on:tap ='pointmanagerbackS'  >视点退格</v-touch></button>
+    
+    </div>
+    
+      <div id="walkcontrol" >
+          <div class="quartercircle divTop" >
+              <button id="btnD1" class="btnD"  style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+          </div>
+        <div class="quartercircle divLeft" > 
+           <button id="btnD2" class="btnD"  style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+          </div>
+        <div class="quartercircle divRight" >
+            <button id="btnD3" class="btnD"  style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+        </div>
+        <div class="quartercircle divBottom" >
+            <button id="btnD4" class="btnD" style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+        </div>
+        <div class="circle" ></div>
+    </div>
+    
+    <div id="flyRightControl">
+      <div class="quartercircle divTop" >
+        <button id="btnD5" class="btnD"  style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+    </div>
+  <div class="quartercircle divLeft" > 
+     <button id="btnD6" class="btnD"  style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+    </div>
+  <div class="quartercircle divRight" >
+      <button id="btnD7" class="btnD"  style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+  </div>
+  <div class="quartercircle divBottom" >
+      <button id="btnD8" class="btnD" style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+  </div>
+  <div class="circle" ></div>
+    </div>
+
+    <div id="flyLeftControl">
+      <div class="quartercircle divTop" >
+        <button id="btnD9" class="btnD"  style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+    </div>
+  <div class="quartercircle divLeft" > 
+     <button   style="border:none;background: url() no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+    </div>
+  <div class="quartercircle divRight" >
+      <button   style="border:none;background: url() no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+  </div>
+  <div class="quartercircle divBottom" >
+      <button id="btnD10" class="btnD" style="border:none;background: url(./static/tri.png) no-repeat center;transform:rotate(225deg);background-size: 50px 50px"><v-touch  type='button'  v-on:tap =''  ></v-touch></button>
+  </div>
+  <div class="circle" ></div>
+    </div>
+      
+
+
+    <div id="div1" style="position:absolute; width:250px;">
+
+      
+
+
+     <button type="button" ><v-touch type='button'   v-on:tap ='rotatemove' >环转模式</v-touch ></button>
+     <button type="button" ><v-touch type='button'   v-on:tap ='walkmove'   >步行模式</v-touch ></button>
+     <button type="button" ><v-touch type='button'   v-on:tap ='flymove'    >飞行模式</v-touch ></button>
+
+
+
+     <button type="button" ><v-touch type='button'  tag = 'a'  v-on:tap ='clipmode'  >剖切模式</v-touch ></button>
+     <button type="button" ><v-touch type='button'  tag = 'a'  v-on:tap ='Xclipmode'  >X轴剖切模式</v-touch ></button>
+     <button type="button" ><v-touch type='button'  tag = 'a'  v-on:tap ='Yclipmode'  >Y轴剖切模式</v-touch ></button>
+     <button type="button" ><v-touch type='button'  tag = 'a'  v-on:tap ='Zclipmode'  >Z轴剖切模式</v-touch ></button>
+     <button type="button" ><v-touch type='button'  tag = 'a'  v-on:tap ='closeClipMode'  >关闭剖切</v-touch ></button>
+
+
+
+
+
+   
+    <button type="button" v-on:click='righthidden' >右键隐藏</button>
+    <button type="button" v-on:click='rightshowall' >显示全部</button>
+    <button type="button" v-on:click='rightisolation' >隔离构件</button>
+    <button type="button" v-on:click='rightshowcenter' >居中显示</button>
+    <button type="button" v-on:click='rightrelation' >关联文件</button> 
+    <button type="button" v-on:click='rightcancel' >取消关联文件</button> 
+ 
+
+
+
+      <button type="button" ><v-touch type='button'   v-on:tap ='back'  >默认视角</v-touch ></button>
+      <button type="button" ><v-touch type='button'   v-on:tap ='measure'  >测量模式</v-touch ></button>
+      <button type="button" ><v-touch type='button'   v-on:tap ='verticalmeasure'  >垂直测量模式</v-touch ></button>
+
+
+      <button type="button" > <v-touch type='button'   v-on:tap ='getstoreynavigation'  >获取平面</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='createdraw'  >创建视点</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='drawRect'     >绘制方框</v-touch > </button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='drawEllipse'  >绘制椭圆</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='drawArrow'    >绘制箭头</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='drawText'     >绘制输入框</v-touch></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='drawPath'     >绘制画笔</v-touch ></button>
+      
+      <button type="button" > <v-touch type='button'   v-on:tap ='getpoint1'     >重绘视点1</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='getpoint2'     >重绘视点2</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='getpoint3'     >重绘视点3</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='getpoint4'     >重绘视点4</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='getpoint5'     >重绘视点5</v-touch ></button>
+      <button type="button" > <v-touch type='button'   v-on:tap ='getpoint6'     >重绘视点6</v-touch ></button>
+
+      <button type="button" ><v-touch type='button'    v-on:tap ='setClassVisible'   >class模型过滤</v-touch ></button>
+      <button type="button" ><v-touch type='button'    v-on:tap ='setProfessionVisible'   >profession专业开关模型过滤</v-touch ></button>
+      <button type="button" ><v-touch type='button'    v-on:tap ='setStoreyVisible'   >storey标高开关模型过滤</v-touch ></button>
+
+      <button type="button" ><v-touch type='button'    v-on:tap ='modelinfo'    >模块查询</v-touch ></button>
+      <button type="button" ><v-touch type='button'    v-on:tap ='modelCancel'    >取消创建好的视点</v-touch ></button> 
+    </div>
+
+  </div>
+
+  </body>
+</html>
